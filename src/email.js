@@ -55,6 +55,18 @@ const validation = () => {
   ) {
     console.log("valid");
     sendEmail();
+
+    // Clear form inputs
+    firstName.value = "";
+    lastName.value = "";
+    senderEmail.value = "";
+    emailMessage.value = "";
+
+    // Disable send button after submission
+    sendBtn.disabled = true;
+    setTimeout(() => {
+      sendBtn.disabled = false;
+    }, 5000);
   } else {
     console.log("invalid");
     Swal.fire({
