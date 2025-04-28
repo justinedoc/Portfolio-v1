@@ -10,7 +10,13 @@ const sendEmail = () => {
   emailjs.init({
     publicKey: "x1eU8Vi3QY3kZlkds",
     blockList: {
-      list: ["foo@emailjs.com", "bar@emailjs.com", "test@gmail.com"],
+      list: [
+        "foo@emailjs.com",
+        "bar@emailjs.com",
+        "test@gmail.com",
+        "testing@email.com",
+        "test*",
+      ],
       watchVariable: senderEmail.value,
     },
   });
@@ -26,8 +32,14 @@ const sendEmail = () => {
     .send("service_t9g4ca2", "template_usb6k2q", sender)
     .then((response) => {
       console.log(`sent succefully, ${(response.status, response.text)}`);
+      // Clear form inputs
+      firstName.value = "";
+      lastName.value = "";
+      senderEmail.value = "";
+      emailMessage.value = "";
+
       Swal.fire({
-        title: "Sent Successfully!",
+        title: "Mail sent Successfully!",
         icon: "success",
         backdrop: `rgba(0,0,5,0.4)`,
         iconColor: "#12f7ffca",
@@ -53,14 +65,7 @@ const validation = () => {
     senderEmail.value &&
     emailMessage.value
   ) {
-    console.log("valid");
     sendEmail();
-
-    // Clear form inputs
-    firstName.value = "";
-    lastName.value = "";
-    senderEmail.value = "";
-    emailMessage.value = "";
 
     // Disable send button after submission
     sendBtn.disabled = true;
