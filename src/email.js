@@ -38,6 +38,8 @@ const sendEmail = () => {
       senderEmail.value = "";
       emailMessage.value = "";
 
+      sendBtn.textContent.replace("sending...", "send message");
+
       Swal.fire({
         title: "Mail sent Successfully!",
         icon: "success",
@@ -69,6 +71,7 @@ const validation = () => {
 
     // Disable send button after submission
     sendBtn.disabled = true;
+    sendBtn.textContent.replace("send message", "sending...");
     setTimeout(() => {
       sendBtn.disabled = false;
     }, 5000);
